@@ -1,0 +1,16 @@
+.entry-head > * {
+    display: inline-block;
+    margin: 0px;
+}
+.entry-version {
+    margin-left: 10px;
+    color: orange
+}
+.entry-body {
+    padding-inline-start: 40px;
+    color: lightgrey;
+}
+.entry-date {
+    margin: 0;
+    color: gray
+}
