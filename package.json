@@ -1,0 +1,29 @@
+{
+    "name": "dubblog",
+    "version": "1.0.0",
+    "description": "A Devlog website",
+    "main": "index.js",
+    "scripts": {
+        "run": "node src",
+        "serve": "nodemon src",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Kool-Kids-Korner/DubBlog.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Kool-Kids-Korner/DubBlog/issues"
+    },
+    "homepage": "https://github.com/Kool-Kids-Korner/DubBlog#readme",
+    "dependencies": {
+        "axios": "^0.26.1",
+        "express": "^4.17.3",
+        "jquery": "^3.6.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}
