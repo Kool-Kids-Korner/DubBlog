@@ -56,30 +56,18 @@ app.get("/release/:version", async (req, res) => {
 // Renders an html using the entries json.
 // This is overbuilt but it can handel many entries on slow internet
 app.get("/", async (req, res) => {
-    const limit = 6;
     const template = (
         await fs.promises.readFile("./public/index.html")
     ).toString();
-    res.send(render(template, entries, limit));
+    res.send(render(template, entries));
 });
 
-app.get("/entries", (req, res) => {
-    const page = Number(req.query.page) + 1 || 1;
-    const limit = Number(req.query.limit) - 1 || 8;
-    const data = entries.slice(page * limit, (limit * page) + limit)
-    res.header("content-type", "application/json")
-    res.send(data)
-});
 // Static routes
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
 
 app.use("/jquery", express.static("./node_modules/jquery/dist/"));
 app.use("/axios", express.static("./node_modules/axios/dist/"));
-
-app.get('/entrytemplate', (req, res) => {
-    res.sendFile(path.resolve('./public/entryTemplate.html'))
-})
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);

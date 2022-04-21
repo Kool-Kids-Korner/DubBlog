@@ -4,11 +4,10 @@ const liTemplate = fs.readFileSync("./public/entryTemplate.html").toString();
  *
  * @param {[{date: string, title: string, version: number, html: string}]} entries
  */
-function generateHTMLList(entries, limit) {
+function generateHTMLList(entries) {
     // Sort by date
     var htmlElments = [];
     entries.forEach((element, index) => {
-        if (index >= limit) return htmlElments.join("");
         htmlElments.push(
             listEl(element.title, element.date, element.version, element.html)
         );
@@ -26,11 +25,10 @@ function listEl(title, date, version, html) {
  *
  * @param {String} template
  * @param {[{date: string, title: string, version: number, html: string}]} entries
- * @param {Number} limit
  * @returns {String}
  */
-function render(template, entries, limit) {
-    return template.replace("{{entries}}", generateHTMLList(entries, limit));
+function render(template, entries) {
+    return template.replace("{{entries}}", generateHTMLList(entries));
 }
 
 module.exports = render;
