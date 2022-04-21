@@ -1,34 +1,20 @@
 const fs = require("fs");
-const liTemplate = fs.readFileSync("./public/entryTemplate.html").toString();
-/**
- *
- * @param {[{date: string, title: string, version: number, html: string}]} entries
- */
-function generateHTMLList(entries) {
-    // Sort by date
-    var htmlElments = [];
-    entries.forEach((element, index) => {
-        htmlElments.push(
-            listEl(element.title, element.date, element.version, element.html)
-        );
-    });
-    return htmlElments.join("");
-}
-function listEl(title, date, version, html) {
-    return liTemplate
-        .replace("{{title}}", title)
-        .replace("{{date}}", date)
-        .replace("{{version}}", version)
-        .replace("{{html}}", html);
-}
+const mustache = require("mustache");
+const path = require("path");
+
+const liTemplate = fs.readFileSync("./templates/entryTemplate.html").toString()
+const entryFilesDir = "./templates/entries/"
 /**
  *
  * @param {String} template
- * @param {[{date: string, title: string, version: number, html: string}]} entries
- * @returns {String}
+ * @param {[{date: string, title: string, version: number, file: string}]} entries
  */
 function render(template, entries) {
-    return template.replace("{{entries}}", generateHTMLList(entries));
+    return mustache.render(template, { 
+        entries: entries.map(el => {
+            el.contents = fs.readFileSync(path.join(entryFilesDir, el.file)).toString()
+            return mustache.render(liTemplate, el)
+        }) 
+    });
 }
-
 module.exports = render;

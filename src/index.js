@@ -57,7 +57,7 @@ app.get("/release/:version", async (req, res) => {
 // This is overbuilt but it can handel many entries on slow internet
 app.get("/", async (req, res) => {
     const template = (
-        await fs.promises.readFile("./public/index.html")
+        await fs.promises.readFile("./templates/index.html")
     ).toString();
     res.send(render(template, entries));
 });
