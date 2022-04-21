@@ -12,7 +12,7 @@ const entryFilesDir = "./templates/entries/"
 function render(template, entries) {
     return mustache.render(template, { 
         entries: entries.map(el => {
-            el.contents = fs.readFileSync(path.join(entryFilesDir, el.file)).toString()
+            el.content = fs.readFileSync(path.join(entryFilesDir, el.file)).toString()
             return mustache.render(liTemplate, el)
         }) 
     });

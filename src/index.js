@@ -65,6 +65,7 @@ app.get("/", async (req, res) => {
 // Static routes
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
+app.use("/images", express.static("./public/images"))
 
 app.use("/jquery", express.static("./node_modules/jquery/dist/"));
 app.use("/axios", express.static("./node_modules/axios/dist/"));
